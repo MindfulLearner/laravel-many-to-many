@@ -28,11 +28,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
+    // this route is used to filter the products by type
     Route::get('/products/filter', [ProductController::class, 'indexFiltered'])->name('products.indexFiltered');
 
     Route::resource('products', ProductController::class);
+
     Route::resource('types', TypeController::class);
 });
+
 
 
 

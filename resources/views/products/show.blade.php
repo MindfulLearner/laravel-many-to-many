@@ -21,7 +21,7 @@
         <h1 class="text-lg font-medium text-black">{{ $product->name }}</h1>
         <p class="mt-2 text-gray-500">{{ $product->description }}</p>
         <p class="mt-4 text-xl font-bold text-indigo-600">{{ $product->price }} €</p>
-        
+        <p class="mt-4 text-gray-500">{{ $product->types->pluck('title')->implode(', ') }}</p>
         <div class="flex items-center mt-4">
           <span class="text-gray-600 mr-2">👍</span> 
           <p class="text-gray-600">{{ $product->likes }} Likes</p>

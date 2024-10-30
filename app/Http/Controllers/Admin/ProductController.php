@@ -13,7 +13,9 @@ public function indexFiltered(Request $request)
 {
     $query = Product::query();
     if ($request->type) {
-        $query->where('type_id', $request->type);
+        $query->whereHas('types', function ($query) use ($request) {
+            $query->where('id', $request->type);
+        });
     }
     
     $products = $query->get();

@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
@@ -15,14 +16,16 @@ class Product extends Model
         'price',
         'cover_image',
         'published',
-        'slug',
         'type_id'
+
     ];
 
 
-    public function type()
+
+
+    public function types(): BelongsToMany
     {
-        return $this->belongsTo(Type::class);
+        return $this->belongsToMany(Type::class);
     }
 
     public function getRouteKeyName()
