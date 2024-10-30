@@ -25,19 +25,21 @@ class ProductSeeder extends Seeder
                 // creating slug from name
                 'slug' => $slug,
                 'name' => $name,
-
                 'description' => fake()->text(),
                 'price' => fake()->randomFloat(2, 1, 100),
                 'cover_image' => fake()->optional()->imageUrl(640, 480, 'animals'),
                 'likes' => fake()->numberBetween(0, 100),
                 'published' => fake()->boolean(),
-                // random type  passed from type table abbiamo preso id perche type_id e una foreign key
-                'type_id' => Type::inRandomOrder()->first()->id
+
 
 
             ]);
         }
     }
+
+
+
+
 
     /**
      * 

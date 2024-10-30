@@ -19,6 +19,7 @@
   </div>
   <div>
     @foreach ($products as $product)
+      {{--  per debuggare {{ dd($product->types) }} --}}
       <div class="bg-gray-700 text-white p-5 rounded-md mx-auto w-full max-w-4xl mb-5 shadow-lg">
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-2xl font-semibold">{{ $product->name }}</h2>
@@ -53,7 +54,7 @@
             </div>
             {{-- type --}}
             <p class="font-medium mb-2">Tipo:</p>
-            <p class="text-gray-300">{{ $product->type->title }}</p>
+            <p class="text-gray-300">{{ $product->types->pluck('title')->implode(', ') }}</p>
           </div>
 
           <div class="bg-gray-800 p-4 rounded-lg">

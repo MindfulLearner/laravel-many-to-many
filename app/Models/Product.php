@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
@@ -15,7 +16,6 @@ class Product extends Model
         'price',
         'cover_image',
         'published',
-        'slug',
         'type_id'
 
     ];
@@ -23,7 +23,7 @@ class Product extends Model
 
 
 
-    public function type()
+    public function types(): BelongsToMany
     {
         return $this->belongsToMany(Type::class);
     }

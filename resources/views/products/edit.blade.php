@@ -38,6 +38,15 @@
             <input type="float" name="price" id="price" value="{{ $product->price }}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200">
         </div>
 
+
+        <div class="flex flex-col text-black">
+            <label for="types" class="text-sm font-semibold text-white">Tipologia</label>
+            <select name="types[]" id="types" multiple class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200">
+             
+            </select>
+        </div>
+
+
         <div class="flex flex-col text-black">
             <label for="cover_image" class="text-sm font-semibold text-white">Immagine di Copertina</label>
             {{-- <input type="file" name="cover_image" id="cover_image" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"> --}}

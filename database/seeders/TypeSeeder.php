@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Type;
 use Illuminate\Support\Str;
 
+
 use Illuminate\Support\Facades\Schema;
 class TypeSeeder extends Seeder
 {
