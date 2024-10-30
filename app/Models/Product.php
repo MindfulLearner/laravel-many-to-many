@@ -17,12 +17,15 @@ class Product extends Model
         'published',
         'slug',
         'type_id'
+
     ];
+
+
 
 
     public function type()
     {
-        return $this->belongsTo(Type::class);
+        return $this->belongsToMany(Type::class);
     }
 
     public function getRouteKeyName()

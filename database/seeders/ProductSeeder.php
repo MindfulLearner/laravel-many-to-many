@@ -15,7 +15,6 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         // truncate the table before seeding
-        Product::truncate();
         // by using faker we can create a random product
         for ($i = 0; $i < 10; $i++) {
             $name = fake()->sentence(2);
@@ -34,6 +33,8 @@ class ProductSeeder extends Seeder
                 'published' => fake()->boolean(),
                 // random type  passed from type table abbiamo preso id perche type_id e una foreign key
                 'type_id' => Type::inRandomOrder()->first()->id
+
+
             ]);
         }
     }

@@ -11,9 +11,9 @@ class Type extends Model
     
     protected $fillable = ['title', 'slug'];
 
-    // creo un one to many relationship con la tabella products
+    // creo un many to many relationship con la tabella products
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class);
     }
 }
