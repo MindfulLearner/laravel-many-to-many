@@ -16,8 +16,7 @@ class Product extends Model
         'price',
         'cover_image',
         'published',
-        'type_id'
-
+        'types'
     ];
 
 
