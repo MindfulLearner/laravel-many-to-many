@@ -41,9 +41,12 @@
 
         <div class="flex flex-col text-black">
             <label for="types" class="text-sm font-semibold text-white">Tipologia</label>
-            <select name="types[]" id="types" multiple class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200">
-             
-            </select>
+            @foreach ($types as $type)
+            <div class="flex items-center">
+                <input type="checkbox" name="types[]" id="types" value="{{ $type->id }}" {{ $product->types->contains($type) ? 'checked' : '' }}>
+                <label for="types" class="text-white">{{ $type->title }}</label>
+            </div>
+            @endforeach
         </div>
 
 
@@ -55,7 +58,7 @@
 
         <div class="flex items-center text-black">
             <input type="hidden" name="published" value="0"> 
-            <input type="checkbox" name="published" id="published" value="1" {{ $product->published ? 'checked' : '' }} class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring focus:ring-blue-200">
+            <input type="checkbox" name="published" id="published" value="1"  class="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring focus:ring-blue-200">
             <label for="published" class="text-sm font-semibold text-white">Pubblicato</label>
         </div>
 

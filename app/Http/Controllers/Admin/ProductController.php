@@ -9,6 +9,10 @@ use App\Models\Type;
 
 class ProductController extends Controller
 {
+
+
+
+
 public function indexFiltered(Request $request)
 {
     $query = Product::query();
@@ -82,7 +86,8 @@ public function indexFiltered(Request $request)
      */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        $types = Type::get();
+        return view('products.edit', compact('product', 'types'));
     }
 
     /**
@@ -90,15 +95,25 @@ public function indexFiltered(Request $request)
      */
     public function update(Request $request, Product $product)
     {
-
         $request->validate([
             'name' => 'required | string',
             'description' => 'required | string',
             'price' => 'required | numeric | min:0',
             'cover_image' => 'required | string',
+            'types' => 'array',
         ]);
 
-        $product->update($request->all());
+        // link https://laravel.com/docs/11.x/eloquent-collections#method-except
+        // surprisely working ?
+        $product->update($request->except('types'));
+
+        // link https://laravel.com/docs/11.x/eloquent-relationships#syncing-associations
+        // sync utilizzimo per aggiornare la relazione many to many
+        // ho messo che deve esserci perforza
+        if ($request->has('types')) {
+            $product->types()->sync($request->types);
+        }
+
         return redirect()->route('products.index');
     }
 
