@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Type;
-
+use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
 
@@ -52,24 +52,38 @@ public function indexFiltered(Request $request)
     public function store(Request $request)
     {
 
+        // gestire il file
+        // $cover_image = $request->file('cover_image');
+        // $cover_image_path = $cover_image->store('cover_images', 'public');
+        // dd($cover_image_path);
 
-        // validazione dei dati
+        
+             // validazione dei dati
         $request->validate([
             'name' => 'required | string',
             'description' => 'required | string',
             'price' => 'required | numeric | min:0',
-            'cover_image' => 'required | string',
+            'cover_image' => 'required | image | max:2048',
             'slug' => 'nullable | string',
             'likes' => 'nullable | integer | min:0',
             'published' => 'nullable | boolean',
         ]);
 
         // creo lo slug da name
-        $slug = $this->createSlug($request->name);
-        $request->merge(['slug' => $slug]);
+        $request['slug'] = $this->createSlug($request->name);
+
+        $pathImage = Storage::put('cover_images', $request->cover_image);
+        $request['cover_image'] = $pathImage;
+
+        dd($pathImage, $request->all());
+
+        // non mi carica slug e cover_image
+
 
 
         Product::create($request->all());
+
+
         return redirect()->route('products.index');
     }
 
