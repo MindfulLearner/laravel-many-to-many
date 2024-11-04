@@ -19,7 +19,7 @@
 
     <h1 class="text-2xl font-bold mb-6 text-white">Modifica Prodotto</h1>
 
-    <form action="{{ route('products.store') }}" method="POST"  class="space-y-4 text-white">
+    <form action="{{ route('products.store') }}" enctype="multipart/form-data" method="POST"  class="space-y-4 text-white">
         @csrf
         @method('POST')
 
@@ -38,11 +38,19 @@
             <input type="float" name="price" id="price"  class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200">
         </div>
 
+
+        {{-- aggiunta img per file tramite symlink --}}
         <div class="flex flex-col text-black">
             <label for="cover_image" class="text-sm font-semibold text-white">Immagine di Copertina</label>
-            {{-- <input type="file" name="cover_image" id="cover_image" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"> --}}
-            <input type="text" name="cover_image" id="cover_image" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200">
+            <input type="file" name="cover_image" id="cover_image" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200">
         </div>
+
+
+        {{-- <div class="flex flex-col text-black">
+            <label for="cover_image" class="text-sm font-semibold text-white">Immagine di Copertina</label>
+            <input type="file" name="cover_image" id="cover_image" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200">
+            <input type="text" name="cover_image" id="cover_image" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200">
+        </div> --}}
 
         <div class="flex items-center text-black">
             <input type="hidden" name="published" value="0"> 

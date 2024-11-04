@@ -14,7 +14,8 @@
   <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-20">
     <div class="md:flex">
       <div class="md:shrink-0">
-        <img class="h-48 w-full object-cover md:h-full md:w-48" src="{{ $product->cover_image }}" alt="{{ $product->name }}">
+        {{-- <img class="h-48 w-full object-cover md:h-full md:w-48" src="{{ asset('storage' . $product->cover_image) }}" alt="{{ $product->name }}"> --}}
+        <img src="../../../public/storage/cover_images/2gbxKCWkUVXgxwKUscYYcZZEQ41WZopGahDsHxWk.png" alt="{{ $product->name }}">
       </div>
       
       <div class="p-8">
