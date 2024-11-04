@@ -75,7 +75,6 @@ public function indexFiltered(Request $request)
         $pathImage = Storage::put('cover_images', $request->cover_image);
         $request['cover_image'] = $pathImage;
 
-        dd($pathImage, $request->all());
 
         // non mi carica slug e cover_image
 

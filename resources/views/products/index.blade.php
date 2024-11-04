@@ -16,6 +16,8 @@
           Filtraaa
         </button>
       </form>
+      <img src="storage/cover_images/5gthKa9snsrxc09AWKaUP7sU5VhUUKU7Z1UUJPeS.png" alt="cover image">
+      <img src="/icone/workwithus.jpg" alt="cover image">
   </div>
   <div>
     @foreach ($products as $product)
