@@ -76,6 +76,7 @@ public function indexFiltered(Request $request)
         $request['cover_image'] = $pathImage;
 
 
+        dd($pathImage);
         // non mi carica slug e cover_image
 
 
@@ -112,9 +113,24 @@ public function indexFiltered(Request $request)
             'name' => 'required | string',
             'description' => 'required | string',
             'price' => 'required | numeric | min:0',
-            'cover_image' => 'required | string',
+            'cover_image' => 'required | image | max:2048',
             'types' => 'array',
+            'remove_cover_image' => 'nullable | boolean',
         ]);
+
+        // se cover_image è presente, allora salvo l'immagine e aggiorno il path cancella l'immagine precedente
+        if (isset($request->cover_image)) {
+            if ($product->cover_image) {
+                Storage::delete($product->cover_image);
+            }
+            $pathImage = Storage::put('cover_images', $request->cover_image);
+            $request['cover_image'] = $pathImage;
+        }
+        // se remove_cover_image è true, allora elimino l'immagine diventa nulla per il db
+        if ($request->remove_cover_image) {
+            Storage::delete($product->cover_image);
+            $request['cover_image'] = null;
+        }
 
         // link https://laravel.com/docs/11.x/eloquent-collections#method-except
         // surprisely working ?
@@ -135,8 +151,12 @@ public function indexFiltered(Request $request)
      */
     public function destroy(Product $product)
     {
+
+        $product->cover_image = Storage::delete($product->cover_image);
+
         $productFound = Product::find($product->id);
         $productFound->delete();
+
         return redirect()->route('products.index');
     }
 

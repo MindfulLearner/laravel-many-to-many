@@ -45,5 +45,11 @@ RUN docker-php-ext-install gettext intl pdo_mysql
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
 
+# Crea l'utente learner e imposta la sua home
+RUN useradd -m -d /home/learner -s /bin/bash learner
 
+# Assegna i permessi della directory al nuovo utente learner
+RUN chown -R learner:www-data /var/www/html && chmod -R 755 /var/www/html
 
+# Cambia l'utente corrente a learner
+USER learner

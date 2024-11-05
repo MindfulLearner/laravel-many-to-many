@@ -19,7 +19,7 @@
 
     <h1 class="text-2xl font-bold mb-6 text-white">Modifica Prodotto</h1>
 
-    <form action="{{ route('products.update', $product->slug) }}" method="POST"  class="space-y-4 text-white">
+    <form action="{{ route('products.update', $product->slug) }}" method="POST" enctype="multipart/form-data" class="space-y-4 text-white">
         @csrf
         @method('PUT')
 
@@ -54,6 +54,8 @@
             <label for="cover_image" class="text-sm font-semibold text-white">Immagine di Copertina</label>
             {{-- <input type="file" name="cover_image" id="cover_image" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"> --}}
             <input type="text" name="cover_image" id="cover_image" value="{{ $product->cover_image }}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200">
+            <input type="checkbox" name="delete_cover_image" id="delete_cover_image" id="remove_cover_image">
+            <label for="delete_cover_image" class="text-white">Elimina immagine</label>
         </div>
 
         <div class="flex items-center text-black">
